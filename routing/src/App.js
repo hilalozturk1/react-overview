@@ -34,6 +34,7 @@ function App() {
           <Route path="/users" element={<Users />}>
             <Route path=":id" element={<User />}></Route>
           </Route>
+          <Route path="*" element={<Error />}></Route>
         </Routes>
       </div>
     </Router>
@@ -79,6 +80,9 @@ function User() {
       <NavLink to={`/users/${parseInt(id) + 1}`}>Next User {parseInt(id) + 1}</NavLink>
     </div>
   );
+}
+function Error() {
+  return <div>This page was not found.</div>;
 }
 
 export default App;
