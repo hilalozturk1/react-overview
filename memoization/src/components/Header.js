@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
 
-function Header({number}) {
-    console.log("worked");
+function Header({ number, data }) {
+  console.log("worked");
   return (
-    <div>Header2 - {number}</div>
-  )
+    <>
+      <div>Header2 - {number}</div><hr/>
+      <code>
+        {JSON.stringify(data)}
+      </code>
+    </>
+  );
 }
 
-export default React.memo(Header)
+export default React.memo(Header);
