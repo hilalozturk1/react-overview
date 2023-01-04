@@ -12,20 +12,22 @@ function App() {
           email: "",
         }}
         onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
+          console.log(JSON.stringify(values, null, 2));
         }}
       >
-        <Form>
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" placeholder="Jane" />
+        {({ handleSubmit, handleChange }) => (
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="firstName">First Name</label>
+            <input name="firstName" placeholder="Jane" onChange={handleChange} />
 
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" placeholder="Doe" />
+            <label htmlFor="lastName">Last Name</label>
+            <input name="lastName" placeholder="Doe" onChange={handleChange} />
 
-          <label htmlFor="email">Email</label>
-          <Field name="email" placeholder="jane@acme.com" type="email" />
-          <button type="submit">Submit</button>
-        </Form>
+            <label htmlFor="email">Email</label>
+            <input name="email" placeholder="jane@acme.com" type="email" onChange={handleChange} />
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </Formik>
     </div>
   );
