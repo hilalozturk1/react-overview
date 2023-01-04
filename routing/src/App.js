@@ -1,5 +1,13 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  NavLink,
+  Outlet,
+  useParams,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -10,21 +18,22 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <NavLink to="/users">Users</NavLink>
             </li>
           </ul>
         </nav>
         <Routes>
           <Route path="/" exact element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
-          <Route path="/users" element={<Users />}></Route>
-          <Route path="/user/:id" element={<User />}></Route>
+          <Route path="/users" element={<Users />}>
+            <Route path=":id" element={<User />}></Route>
+          </Route>
         </Routes>
       </div>
     </Router>
@@ -49,10 +58,11 @@ function Users() {
       <ul>
         {users.map((item) => (
           <li key={item.id}>
-            <Link to={`/user/${item.id}`}>user {item.name}</Link>
+            <NavLink to={`/users/${item.id}`}>user {item.name}</NavLink>
           </li>
         ))}
       </ul>
+      <Outlet />
     </div>
   );
 }
@@ -66,7 +76,7 @@ function User() {
     <div>
       <h2>user detail: {id}</h2>
       <code>{JSON.stringify(user)}</code> <br /> <br />
-      <Link to={`/user/${parseInt(id) + 1}`}>Next User {parseInt(id) + 1}</Link>
+      <NavLink to={`/users/${parseInt(id) + 1}`}>Next User {parseInt(id) + 1}</NavLink>
     </div>
   );
 }
