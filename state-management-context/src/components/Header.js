@@ -1,12 +1,12 @@
-import { useContext } from "react";
+import { React, useContext } from "react";
 import ThemeContext from "../contex/ThemeContext";
 
-function Button() {
+function Header() {
   const data = useContext(ThemeContext);
-
+  console.log(data.theme);
   return (
     <div>
-      Active Theme : {data.theme}
+      Header Active Theme : {data.theme}
       <button
         onClick={() => (data.theme === "dark" ? data.setTheme("light") : data.setTheme("dark"))}
       >
@@ -16,4 +16,4 @@ function Button() {
   );
 }
 
-export default Button;
+export default Header;

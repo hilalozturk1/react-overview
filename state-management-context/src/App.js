@@ -1,13 +1,15 @@
 import "./App.css";
 import Button from "./components/Button";
-import ThemeContext from "./contex/ThemeContext";
-
+import Header from "./components/Header";
+import { ThemeProvider } from "./contex/ThemeContext";
 
 function App() {
-  console.log(ThemeContext);
-  return <ThemeContext.Provider value={"dark"}>
-    <Button/>
-  </ThemeContext.Provider>;
+  return (
+    <ThemeProvider>
+      <Header />
+      <Button />
+    </ThemeProvider>
+  );
 }
 
 export default App;
