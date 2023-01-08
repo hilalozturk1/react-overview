@@ -1,8 +1,7 @@
-import { React, useContext } from "react";
-import ThemeContext from "../contex/ThemeContext";
+import {useTheme} from "../contex/ThemeContext";
 
 function Header() {
-  const data = useContext(ThemeContext);
+  const data = useTheme()
   console.log(data.theme);
   return (
     <div>
