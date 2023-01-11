@@ -21,3 +21,10 @@ export const subscribe = (cb) => {
     cb(message);
   });
 };
+export const subscribeInitialMessages = (cb) => {
+  if (!socket) return;
+  socket.on("message-list", (messages) => {
+    console.log("initial list", messages);
+    cb(messages);
+  });
+};
