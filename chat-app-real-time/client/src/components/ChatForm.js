@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import ChatContext from "../context/ChatContext";
 import { send } from "../socketApi";
 import styles from "./styles.module.css";
 
 function ChatForm() {
-  const [message, setMessage] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+  const { message, setMessage } = useContext(ChatContext);
 
   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(message);
-          send(message);
-          setMessage("");
+          console.log(newMessage);
+          setMessage([...message, { message : newMessage }]);
+          send(newMessage);
+
+          setNewMessage("");
         }}
       >
         <input
           type="text"
           className={styles.textInput}
-          value={message}
+          value={newMessage}
           onChange={(e) => {
-            setMessage(e.target.value);
+            setNewMessage(e.target.value);
           }}
         />
       </form>
