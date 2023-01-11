@@ -11,6 +11,13 @@ export const init = () => {
   });
 };
 export const send = (message) => {
-    if(socket) socket.emit("new-message", message)
-    console.log("new message", message);
-}
+  if (socket) socket.emit("new-message", message);
+  console.log("new message", message);
+};
+export const subscribe = (cb) => {
+  if (!socket) return;
+  socket.on("receive-message", (message) => {
+    console.log("new message socket api", message);
+    cb(message);
+  });
+};
