@@ -13,7 +13,7 @@ function ChatForm() {
         onSubmit={(e) => {
           e.preventDefault();
           console.log(newMessage);
-          setMessage([...message, { message : newMessage }]);
+          setMessage([...message, { message: newMessage, fromMe: true }]);
           send(newMessage);
 
           setNewMessage("");
