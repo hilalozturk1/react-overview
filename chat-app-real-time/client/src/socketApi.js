@@ -10,3 +10,7 @@ export const init = () => {
     console.log("connected");
   });
 };
+export const send = (message) => {
+    if(socket) socket.emit("new-message", message)
+    console.log("new message", message);
+}
